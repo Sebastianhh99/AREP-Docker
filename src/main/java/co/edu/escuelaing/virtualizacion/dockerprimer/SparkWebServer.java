@@ -4,7 +4,14 @@ import spark.Request;
 import spark.Response;
 import static spark.Spark.*;
 
+import java.net.UnknownHostException;
+import java.util.List;
+
+import com.mongodb.DBObject;
+
 import org.json.JSONObject;
+
+import co.edu.escuelaing.virtualizacion.dockerprimer.service.LogService;
 
 public class SparkWebServer {
     
@@ -14,9 +21,13 @@ public class SparkWebServer {
           post("logservice","application/json",(req,res)->logService(req,res));
     }
 
-    public static JSONObject logService(Request req,Response res){
+    public static List<DBObject> logService(Request req,Response res){
         JSONObject data = new JSONObject(req.body());
-        return new JSONObject();
+        try {
+            return LogService.saveData(data);
+        } catch (UnknownHostException e) {
+            return null;
+        }
     }
 
 
