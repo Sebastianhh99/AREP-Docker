@@ -18,11 +18,13 @@ import org.json.JSONObject;
 public class LogService {
     public static List<DBObject> saveData(JSONObject data) throws UnknownHostException{
         List<DBObject> response = new ArrayList<>();
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://ec2-100-25-159-8.compute-1.amazonaws.com:27017"));
         DB database = mongoClient.getDB("AREP");
         DBCollection collection = database.getCollection("logs");
         collection.insert(new BasicDBObject("data",data.getString("data")).append("date", new Date()));
-        DBCursor cursor = collection.find().limit(10);
+        DBCursor cursor = collection.find();
+        int size = cursor.count();
+        cursor = cursor.skip(size-10);
         while(cursor.hasNext()){
             response.add(cursor.next());
         }

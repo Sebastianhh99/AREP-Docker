@@ -2,27 +2,13 @@ version: '2'
 
 
 services:
-    log-service1:
+    web:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: log-service1
+        container_name: web
         ports:
-            - "35001:6000"
-    log-service2:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        container_name: log-service2
-        ports:
-            - "35002:6000"
-    log-service3:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        container_name: log-service3
-        ports:
-            - "35003:6000"
+            - "80:6000"
     db:
         image: mongo:3.6.1
         container_name: db

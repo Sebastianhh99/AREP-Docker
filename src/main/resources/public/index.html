@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoundRobin</title>
+</head>
+<body>
+    <form id="form">
+        <textarea name="data" id="data" cols="30" rows="10" required></textarea>
+        <br>
+        <button>Submit log</button>
+    </form>
+    <div id="logs">
+
+    </div>
+    <script>
+        var index = 0;
+        const ports = ['35001','35002','35003']
+        document.getElementById("form").addEventListener('submit',(event)=>{
+            event.preventDefault()
+            fetch(`http://ec2-100-25-159-8.compute-1.amazonaws.com:${ports[index]}/logservice`,{
+                method:'POST',
+                body: JSON.stringify({data:document.getElementById("data").value}),
+                headers:{
+                    'Content-Type':"application/json",
+                }
+            }).then(data=>data.json())
+            .then(data=>{
+                let ans="";
+                data.forEach(element => {
+                    ans+=`<h3>log: ${element.data}, date: ${element.date.$date}</h3>`;
+                });
+                document.getElementById("logs").innerHTML=ans;
+                index = index+1>2 ? 0:index+1;
+            })
+        })
+    </script>
+</body>
+</html>
