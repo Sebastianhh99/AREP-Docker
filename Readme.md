@@ -15,11 +15,11 @@
 >>
 >> Imagen del docker:
 >>
->> ![](https://github.com/Sebastianhh99/AREP-Docker/blob/main/resources/img/docker.jpg)
+>> ![](https://github.com/Sebastianhh99/AREP-Docker/blob/f7e938a83c0bc6428e0a6ddc2d43bd8511059ebb/resources/img/docker.jpg)
 >>
 >> Imagen del proyecto
 >>
->> ![](https://github.com/Sebastianhh99/AREP-Docker/blob/main/resources/img/app.jpg)
+>> ![](https://github.com/Sebastianhh99/AREP-Docker/blob/f7e938a83c0bc6428e0a6ddc2d43bd8511059ebb/resources/img/app.jpg)
 >>
 >>
 >>
