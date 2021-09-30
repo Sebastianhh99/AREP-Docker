@@ -14,8 +14,15 @@ import org.json.JSONObject;
 
 import co.edu.escuelaing.virtualizacion.dockerprimer.service.LogService;
 
+/**
+ * Class for the server
+ */
 public class SparkWebServer {
     
+    /**
+     * Main class it 
+     * @param args arguments
+     */
     public static void main(String... args){
         staticFiles.location("/public");
         port(getPort());
@@ -44,6 +51,12 @@ public class SparkWebServer {
         post("logservice","application/json",(req,res)->logService(req,res));
     }
 
+    /**
+     * 
+     * @param req Request
+     * @param res Response
+     * @return last 10 logs on a List
+     */
     public static List<DBObject> logService(Request req,Response res){
         JSONObject data = new JSONObject(req.body());
         try {
@@ -53,7 +66,10 @@ public class SparkWebServer {
         }
     }
 
-
+    /**
+     * Get env port
+     * @return int the port
+     */
     private static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));

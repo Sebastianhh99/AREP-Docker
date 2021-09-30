@@ -15,7 +15,16 @@ import com.mongodb.MongoClientURI;
 
 import org.json.JSONObject;
 
+/**
+ * Log service class
+ */
 public class LogService {
+    /**
+     * Saves the log and return the last 10
+     * @param data new Log
+     * @return last 10 logs on a List
+     * @throws UnknownHostException Exception for mongodb
+     */
     public static List<DBObject> saveData(JSONObject data) throws UnknownHostException{
         List<DBObject> response = new ArrayList<>();
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://ec2-100-25-159-8.compute-1.amazonaws.com:27017"));
